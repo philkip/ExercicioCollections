@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Stack;
+
 import controller.ControlAluno;
 
 public class App 

@@ -2,19 +2,20 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 import model.Aluno;
 
 public class ControlAluno 
 {
-	ArrayList arAluno;
-		
+	ArrayList<Aluno> arAluno;
+			
 	public ControlAluno() 
 	{
 		arAluno = new ArrayList<>();
 		
 		adicionaAluno();
-		visualizarData();
+		stackAlunos();
 	}
 	
 	public void adicionaAluno()
@@ -37,12 +38,30 @@ public class ControlAluno
 		
 	}
 	
-	public void visualizarData()
+	private ArrayList<Integer> sortArray(ArrayList<Integer> desordenados)
 	{
-		for(int i = 0; i < arAluno.size(); i++)
+		ArrayList<Integer> ordenado = new ArrayList(desordenados.size());
+		
+		int oMaior = 0;
+		
+		ArrayList<Integer> artmp = new ArrayList(desordenados);
+		
+		while(ordenado.size() < desordenados.size())
 		{
-			System.out.println(arAluno.get(i));
+			int aRemover = 0;
+			
+			for(int i = 0; i < artmp.size(); i++)
+			{
+				if(artmp.get(i) >= oMaior)
+				{
+					oMaior = artmp.get(i);
+					aRemover = i;
+				}
+			}
+			
+			ordenado.add(oMaior);
+			artmp.remove(aRemover);
 		}
+		return ordenado;
 	}
-
 }
